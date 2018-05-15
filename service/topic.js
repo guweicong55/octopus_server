@@ -1,12 +1,8 @@
-import db from './connection';
+import sql from './connection';
 
 class Topic {
     getAll () {
-        return new Promise((res, rej) => {
-            db.query('SELECT * FROM topic', (err, result) => {
-                res(result);
-            });
-        });
+        return sql('SELECT * FROM topic');
     }
 }
 

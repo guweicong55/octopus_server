@@ -5,8 +5,16 @@ const connection = mysql.createConnection(config.dbConfig);
 connection.connect(err => {
     if (err) {
         console.error('error connecting: ' + err);
-        return;
     }
 });
 
-export default connection;
+const sql = (str) => {
+    let _this = this;
+    return new Promise((res, rej) => {
+        _this.query(str, (err, result) => {
+            res(result);
+        });
+    });
+}
+
+export default sql;

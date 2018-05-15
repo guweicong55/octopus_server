@@ -16,3 +16,5 @@
 [2018-05-15T18:47:56.780] [INFO] default - [::ffff:127.0.0.1 GET /s1/t 304 5ms][ HTTP/1.1 Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36]
 [2018-05-15T18:51:54.963] [INFO] default - Server is running on 7001
 [2018-05-15T18:51:59.377] [INFO] default - [::ffff:127.0.0.1 GET /s1/t 304 9ms][ HTTP/1.1 Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36]
+[2018-05-15T21:33:59.528] [INFO] default - Server is running on 7001
+[2018-05-15T21:35:06.696] [INFO] default - Server is running on 7001
