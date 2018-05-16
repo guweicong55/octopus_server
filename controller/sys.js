@@ -5,7 +5,7 @@ import secret from '../tool/secret';
 class Sys {
 
     //用户登录
-    s1_login (req, res) {
+    async s1_login (req, res) {
         const data = req.body;
         const account = validator.trim(data.account || '');
         const password = validator.trim(data.password || '');
@@ -13,14 +13,37 @@ class Sys {
         if ([account, password].some(val => !val)) {
             res.send({
                 status: 0,
-                msg: '注册信息不完整'
+                msg: '登陆信息不完整'
             });
             return;
         }
 
-        if (validator.isEmail(account)) {
+        let userData;
 
+        try {
+	        if (validator.isEmail(account)) {
+		        userData = await User.findUserByEmail(account);
+	        } else {
+		        userData = await User.findUserByUsername(account);
+	        }
+
+	        if (userData.length === 0) {
+		        res.send({
+			        status: 0,
+			        msg: '用户不存在'
+		        });
+            }
+
+        } catch (err) {
+            console.log(err);
+	        res.send({
+		        status: 0,
+		        msg: '登陆失败'
+	        });
         }
+
+
+
 
     }
 
