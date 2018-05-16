@@ -1,11 +1,11 @@
-import { getTopic } from '../service/index'
+import { Topic } from '../service/index'
 
-class Topic {
+class TopicControl {
     async getAll (req, res) {
-        const all = await getTopic.getAll();
-        console.log(all);
-        res.send('123213213');
+
+        const all = await Topic.getAll();
+        res.send(all);
     }
 }
 
-export default new Topic();
+export default new TopicControl();

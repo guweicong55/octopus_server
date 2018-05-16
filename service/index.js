@@ -1,5 +1,7 @@
-import getTopic from './topic';
+import Topic from './topic';
+import User from './user';
 
 export {
-    getTopic
+    User,
+    Topic
 }

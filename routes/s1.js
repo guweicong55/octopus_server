@@ -1,8 +1,10 @@
 import express from 'express';
-import { topic } from '../controller';
+import { topic, sys } from '../controller';
+
 const router = express.Router();
 
-console.log(topic.getAll);
-router.get('/t', topic.getAll);
+router.post('/login', sys.s1_login);
+router.post('/register', sys.s1_register);
+router.get('/topic', topic.getAll);
 
 export default router;

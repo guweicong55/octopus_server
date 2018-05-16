@@ -8,13 +8,12 @@ connection.connect(err => {
     }
 });
 
-const sql = (str) => {
-    let _this = this;
+const q = (str) => {
     return new Promise((res, rej) => {
-        _this.query(str, (err, result) => {
+        connection.query(str, (err, result) => {
             res(result);
         });
     });
 }
 
-export default sql;
+export default q;

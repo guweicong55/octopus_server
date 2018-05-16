@@ -1,8 +1,8 @@
-import sql from './connection';
+import q from './connection';
 
 class Topic {
     getAll () {
-        return sql('SELECT * FROM topic');
+        return q('SELECT * FROM topic');
     }
 }
 
