@@ -32,18 +32,29 @@ class Sys {
 			        status: 0,
 			        msg: '用户不存在'
 		        });
+		        return;
+            }
+
+            if (secret.compare(password, userData[0].password)) {
+                req.session.user = userData[0];
+                res.send({
+                    status: 1,
+                    msg: '登录成功'
+                });
+            } else {
+                res.send({
+                    status: 0,
+                    msg: '密码不正确'
+                });
             }
 
         } catch (err) {
             console.log(err);
 	        res.send({
 		        status: 0,
-		        msg: '登陆失败'
+		        msg: '登陆失败,请重试'
 	        });
         }
-
-
-
 
     }
 
@@ -108,7 +119,6 @@ class Sys {
                 msg: '注册失败'
             });
         }
-
 
     }
 }
