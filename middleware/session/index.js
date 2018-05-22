@@ -5,9 +5,10 @@ import cookieParser from 'cookie-parser';
 const RedisStore = connectRedis(session);
 const secret = 'octopus';
 const options = {
-    host: 'localhost',
+    host: '39.106.49.200',
     port: 6379,
-    db: 0
+    db: 0,
+    password: 'Guweicongv5!'
 };
 
 export default app => {
