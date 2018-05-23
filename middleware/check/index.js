@@ -1,6 +1,14 @@
 class Check {
-    userIsLogin (req, res) {
-
+    isUserLogin (req, res, next) {
+        if (!req.session.user) {
+            res.send({
+                code: 403,
+                msg: '未登录',
+                status: 0
+            });
+        } else {
+            next();
+        }
     }
 }
 

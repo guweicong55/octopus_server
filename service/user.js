@@ -8,11 +8,11 @@ class User {
     }
 
     findUserByUsername (username) {
-        return q(`SELECT * FROM USER WHERE username = '${username}'`);
+        return q(`SELECT * FROM user WHERE username = '${username}'`);
     }
 
     findUserByEmail (email) {
-        return q(`SELECT * FROM USER WHERE email = '${email}'`);
+        return q(`SELECT * FROM user WHERE email = '${email}'`);
     }
 }
 

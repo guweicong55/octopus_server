@@ -27,7 +27,7 @@ class Sys {
 		        userData = await User.findUserByUsername(account);
 	        }
 
-	        if (userData.length === 0) {
+	        if (!userData) {
 		        res.send({
 			        status: 0,
 			        msg: '用户不存在'
@@ -86,7 +86,7 @@ class Sys {
         try {
             //判断用户名邮箱是否已存在
             const usernameExist = await User.findUserByUsername(username);
-            if (usernameExist.length > 0) {
+            if (usernameExist) {
                 res.send({
                     status: 0,
                     msg: '用户名已存在'
@@ -95,7 +95,7 @@ class Sys {
             }
 
             const emailExist = await User.findUserByEmail(email);
-            if (emailExist.length > 0) {
+            if (emailExist) {
                 res.send({
                     status: 0,
                     msg: '邮箱已存在'
