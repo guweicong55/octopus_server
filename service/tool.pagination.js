@@ -1,11 +1,25 @@
-//import q from './'
-var f = (sql, pageNum, pageSize) => {
+import q from './connection';
+
+export default async (sql, pageNum = 1, pageSize = 30) => {
     if (!/^SELECT/.test(sql)) {
         console.error('不是SELECT语句');
         return;
     }
 
+    let newSql = sql + ` LIMIT ${(pageNum-1)*pageSize}, ${pageSize}`;
+    let getCount = sql.replace(/^SELECT(.+)FROM/, 'SELECT count(*) FROM');
+
+    let data = await q(newSql);
+    let count = await q(getCount);
+
+	console.log(newSql);
+    console.log(getCount);
+
+    return  new Promise((res, rej) => {
+        res({
+	        data,
+	        count: count[0]['count(*)']
+        });
+    });
 
 };
-
-f('SELECT t.id, t.title, t.content, u.username, u.id usernameId  FROM topic t, USER u WHERE  u.id = t.creator_id AND t.status = 1 ORDER BY t.create_date DESC LIMIT 1, 1');

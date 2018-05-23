@@ -1,8 +1,9 @@
 import q from './connection';
+import pagination from './tool.pagination';
 
 class Topic {
     getAll () {
-        return q('SELECT t.id, t.title, t.content, u.username  FROM topic t, user u WHERE  u.id = t.creator_id AND t.status = 1');
+        return pagination('SELECT * FROM topic');
     }
 
     create (title, content, creator_id, section_id) {
