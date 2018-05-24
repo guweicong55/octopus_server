@@ -2,9 +2,26 @@ import { Topic } from '../service/index';
 
 class TopicControl {
     async getAll (req, res) {
-        const t = await Topic.getAll();
-        console.log(t);
-        res.send(t);
+        let body = req.body;
+        let pageNum = body.pageNum;
+        let pageSize = body.pageSize;
+
+        try {
+            const topicList = await Topic.getAll(pageNum, pageSize);
+            res.send({
+                status: 1,
+                msg: '查询成功',
+                data: topicList
+            });
+        } catch (err) {
+            console.error(err);
+            res.send({
+                status: 0,
+                msg: '查询失败',
+            });
+        }
+
+
     }
 
     async publish (req, res) {

@@ -27,7 +27,7 @@ class Sys {
 		        userData = await User.findUserByUsername(account);
 	        }
 
-	        if (!userData) {
+	        if (userData.length === 0) {
 		        res.send({
 			        status: 0,
 			        msg: '用户不存在'
