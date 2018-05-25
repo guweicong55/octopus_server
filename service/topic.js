@@ -26,6 +26,32 @@ class Topic {
     create (title, content, creator_id, section_id) {
         return q(`INSERT INTO topic (title, content, creator_id, section_id) VALUES ('${ title }', '${ content }', '${ creator_id }', '${ section_id }')`);
     }
+
+    getById (id) {
+        return q(`SELECT 
+          topic.id,
+          topic.title,
+          topic.content,
+          topic.agree_count AS agreeCount,
+          topic.disagree_count AS disagreeCount,
+          topic.section_id AS sectionId,
+          section.name AS sectionName,
+          u.username,
+          u.id AS userId,
+          u.autograph
+        FROM
+          topic,
+          user AS u,
+          section
+        WHERE
+          topic.id = ${ id }
+        AND
+          topic.section_id = section.id
+        AND
+          topic.creator_id = u.id
+        AND 
+          topic.status = 1`);
+    }
 }
 
 export default new Topic();

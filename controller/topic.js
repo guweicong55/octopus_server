@@ -24,6 +24,32 @@ class TopicControl {
 
     }
 
+    async getById (req, res) {
+        const id = req.params.id;
+        if (!id) {
+            res.send({
+                status: 0,
+                msg: '未获取的到id'
+            });
+            return;
+        }
+
+        try {
+            const topic = await Topic.getById(id);
+            res.send({
+                data: topic[0],
+                status: 1,
+                msg: '查询成功'
+            });
+        } catch (err) {
+            console.error(err);
+            res.send({
+                status: 0,
+                msg: '查询成功'
+            });
+        }
+    }
+
     async publish (req, res) {
         const body = req.body;
         let title = body.title,
