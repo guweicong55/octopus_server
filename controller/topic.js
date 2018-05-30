@@ -2,7 +2,7 @@ import { Topic } from '../service/index';
 
 class TopicControl {
     async getAll (req, res) {
-        let body = req.body;
+        let body = req.query;
         let pageNum = body.pageNum;
         let pageSize = body.pageSize;
 
