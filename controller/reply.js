@@ -35,6 +35,32 @@ class ReplyControl {
         }
 
     }
+
+	async getByTopicId (req, res) {
+        const body = req.query, topicId = body.topicId, pageNum = body.pageNum, pageSize = body.pageSize;
+        if (!topicId) {
+            res.send({
+                status: 0,
+                msg: '缺少主题ID'
+            });
+            return;
+        }
+
+        try {
+            const replyList = await Reply.getByTopicId(topicId, pageNum, pageSize);
+            res.send({
+               data: replyList,
+               msg: '请求成功',
+               status: 1
+            });
+        } catch (err) {
+            console.error(err);
+	        res.send({
+		        status: 0,
+		        msg: '查询失败'
+	        });
+        }
+    }
 }
 
 export default new ReplyControl();

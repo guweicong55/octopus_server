@@ -15,5 +15,6 @@ router.post('/topic/publish', check.isUserLogin, topic.publish);
 
 //评论
 router.post('/reply/new', check.isUserLogin, reply.newAndSave);
+router.get('/reply/byTopicId', reply.getByTopicId);
 
 export default router;
