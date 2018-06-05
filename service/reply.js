@@ -16,7 +16,7 @@ class Reply {
             reply.agree_count,
             reply.disagree_count,
             reply.creator_id
-        FROM USER,
+        FROM user,
             reply
         WHERE reply.topic_id = ${ topicId }
                         AND user.id = reply.creator_id

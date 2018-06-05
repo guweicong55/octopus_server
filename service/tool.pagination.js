@@ -7,15 +7,15 @@ export default async (sql, pageNum = 1, pageSize = 30) => {
     }
 
     let newSql = sql + ` LIMIT ${ (pageNum-1)*pageSize }, ${ pageSize }`;
-    let getCount = sql.replace(/[\r\n]/g, '').replace(/^SELECT.+FROM/, 'SELECT count(0) FROM');
-	console.log(getCount);
+    let getCount = sql.replace(/[\r\n]/g, '').replace(/^SELECT.+FROM/, 'SELECT count(1) FROM');
+
     let list = await q(newSql);
     let count = await q(getCount);
-	console.log(newSql);
+
     return  new Promise((res, rej) => {
         res({
 	        list,
-	        count: count.length
+	        count: count[0]['count(1)']
         });
     });
 
