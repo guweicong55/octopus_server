@@ -19,8 +19,8 @@ class Reply {
         FROM user,
             reply
         WHERE reply.topic_id = ${ topicId }
-                        AND user.id = reply.creator_id
-                        AND reply.status = 1
+            AND user.id = reply.creator_id
+            AND reply.status = 1
         ORDER BY reply.create_date DESC`, pageNum, pageSize);
     }
 }
